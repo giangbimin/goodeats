@@ -1,0 +1,70 @@
+<h3><%= @title %></h3>
+<% if @total > 0 %>
+    <table class="bordered centered striped" style="margin-bottom: 32px">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @foods.each do |food| %>
+          <tr>
+            <td><%= food.name %></td>
+            <td>
+              <input id="input-<%= food.id %>" type="number" name="quantity"
+                     style="text-align: center; width: 70%"
+                     min="1" max="20" value="<%= food.quantity %>">
+            </td>
+            <td><%= food.price %></td>
+            <td id="total-<%= food.id %>"><%= food.total %></td>
+            <td>
+              <%= link_to orders_remove_path(id: food.id), method: :post do %>
+                  <i class="material-icons">close</i>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td id="total"><%= format_price(@total) %></td>
+        <td>
+          <button class="btn waves-effect waves-light" type="submit" name="action">
+            Check out
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+<% end %>
+
+<script>
+  // Number formatter
+  Number.prototype.format = function (n, x) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+    return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+  };
+  // Disable event type input
+  $("[type='number']").keypress(function (evt) {
+    evt.preventDefault();
+  });
+  // Add listener for input change
+  <% @foods.each do |food| %>
+  $('#input-<%= food.id %>').change(function () {
+    // Update food total
+    $('#total-<%= food.id %>').text(
+        ($(this).val() * <%= food.price_amount %>).format() + " VND"
+    )
+    // Update all total
+    $('#total').text(
+        (<%= @total %> +$(this).val() * <%= food.price_amount %> - <%= food.total_amount %>).format() + " VND"
+    )
+  });
+  <% end %>
+</script>

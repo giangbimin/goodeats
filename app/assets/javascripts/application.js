@@ -12,8 +12,6 @@
 //= require rails-ujs
 //= require jquery
 //= require bootstrap-sprockets
-//= require swiper.jquery.min
 //= require jquery.raty
 //= require animate-on-scroll
-//= require script
 //= require turbolinks
