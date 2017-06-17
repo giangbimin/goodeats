@@ -1,0 +1,2 @@
+  $('.ajax-form-create').html('<%= j render "ratings/form", food: @food %>');
+  $('#average_rating').raty({path: '/assets', readOnly: true, score: <%= @food.average_rating %> });

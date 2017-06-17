@@ -1,0 +1,12 @@
+<% reviews.each do |review| %>
+    <div class="card">
+        <div id="stars_<%= rating.id %>"></div>
+    </div>
+    <script>
+      $('#stars_<%= rating.id %>').raty({
+        path: '/assets',
+        readOnly: true,
+        score: <%= rating.star %>
+      });
+    </script>
+<% end %>

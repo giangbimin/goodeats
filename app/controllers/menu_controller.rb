@@ -7,8 +7,7 @@ class MenuController < ApplicationController
 
   def display
     @food = Food.find(params[:id])
-    @food.views_count += 1
-    @food.save
+    @food.increase_views_count
     respond_to :js
   end
 
@@ -23,13 +22,13 @@ class MenuController < ApplicationController
   private
 
   def filtering_params(params)
-    params.slice(:price_sort, :name_sort, :views_count_sort, :by_section, :by_cuisine)
+    params.slice(:by_section, :by_cuisine, :name_sort, :price_sort, :views_count_sort)
   end
 
   def default_opitions
-    @price_sort = ["ASC", "DESC"]
-    @name_sort = ["ASC", "DESC"]
-    @views_count_sort = ["ASC", "DESC"]
+    @price_sort = ['ASC', 'DESC']
+    @name_sort = ['ASC', 'DESC']
+    @views_count_sort = ['ASC', 'DESC']
     @by_section = @foods.pluck(:section).uniq
     @by_cuisine = @foods.pluck(:cuisine).uniq
   end

@@ -1,0 +1,5 @@
+  <h4>Leave a rating:</h4>
+  <%= form_for [food, food.ratings.build], remote: true do |f| %>
+      <%= f.text_area :score, class: "form-control"%>
+      <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
