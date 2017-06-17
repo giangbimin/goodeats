@@ -1,0 +1,131 @@
+<div class="col m7">
+  <table class="bordered centered striped" style="margin-bottom: 32px">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @foods.each do |food| %>
+        <tr id="row-<%= food.id %>">
+          <!-- Name -->
+          <td>
+            <%= food.name %>
+          </td>
+
+          <!-- Quantity -->
+          <td>
+            <input id="input-<%= food.id %>" type="number" name="quantity[]"
+                   style="text-align: center; width: 70%"
+                   min="1" max="20" value="<%= food.quantity %>">
+            <input type="hidden" name="id[]" value="<%= food.id %>">
+          </td>
+
+          <!-- Price -->
+          <td>
+            <%= food.price %>
+          </td>
+
+          <!-- Total -->
+          <td id="total-<%= food.id %>">
+            <%= food.total %>
+          </td>
+
+          <!-- Remove action -->
+          <td>
+            <%= link_to orders_remove_path(id: food.id), remote: true, method: :post do %>
+                <i class="material-icons">close</i>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+
+    <!-- Coupon -->
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <div class="input-field" id="coupon-value" >
+          <input id="coupon" type="text" class="validate" name="coupon">
+        </div>
+      </td>
+      <td>
+        <a id="btn-coupon" class="btn waves-effect waves-light">add coupon</a>
+      </td>
+    </tr>
+
+    <!-- Check Out -->
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td id="total"><%= format_price(@total) %></td>
+      <td>
+        <button id="checkout" class="btn waves-effect waves-light" type="submit" name="action">
+          Check out
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  var percent = 0;
+  // Click coupon
+  $('#btn-coupon').click(function () {
+    $.ajax({
+      method: 'POST',
+      url: '/orders/coupon',
+      data: {code: $('#coupon').val()},
+      success: function (data) {
+        if (data.success) {
+          toastr.info('Coupon added');
+          percent = Math.round(data.percent);
+          $('#btn-coupon').remove();
+          $('#coupon-value').replaceWith("-" + percent + "%");
+          $('#total').text(calculateTotal().format() + " VND")
+        } else {
+          toastr.error('Invalid coupon');
+        }
+      }
+    })
+  });
+  // Number formatter
+  Number.prototype.format = function (n, x) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+    return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+  };
+  // Disable event type input
+  $("[type='number']").keypress(function (event) {
+    event.preventDefault();
+  });
+  // Add listener for input change
+  <% @foods.each do |food| %>
+  $('#input-<%= food.id %>').change(function () {
+    // Update food total
+    $('#total-<%= food.id %>').text(
+        ($(this).val() * <%= food.price_amount %>).format() + " VND"
+    );
+    // Update all total
+    $('#total').text(calculateTotal().format() + " VND")
+  });
+  <% end %>
+  // Calculate total amount
+  calculateTotal = function () {
+    var total = 0;
+    <% @foods.each do |food| %>
+      if ($('#row-<%= food.id %>').length > 0) {
+          total += $('#input-<%= food.id %>').val() * <%= food.price_amount %>;
+      }
+    <% end %>
+    total -= total * percent / 100;
+    return total;
+  };
+</script>

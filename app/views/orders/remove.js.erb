@@ -1,0 +1,14 @@
+
+// Update orders count
+$("#orders_count").html("<%= escape_javascript("Orders (#{current_orders.count})") %>");
+
+// Remove row
+$("#row-<%= params[:id] %>").remove();
+
+// Update total
+$('#total').text(calculateTotal().format() + " VND");
+
+// Update view
+if (calculateTotal() == 0) {
+  $('#my-order').html("<h3>You have no orders</h3>")
+}

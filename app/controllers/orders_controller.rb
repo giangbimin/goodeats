@@ -1,14 +1,21 @@
 class OrdersController < ApplicationController
   def add
     add_to_orders(params[:id])
-    @orders_count = current_orders.count
     respond_to :js
   end
 
   def remove
     remove_from_orders(params[:id])
-    redirect_to orders_index_path
+    respond_to :js
   end
+
+  def coupon
+    coupon = Coupon.where(code: params[:code]).first
+    percent = coupon ? coupon.percent : 0
+    render json: {success: coupon != nil, percent: percent}
+  end
+
+  def create; end
 
   def index
     service = ShowOrderService.new(current_orders)

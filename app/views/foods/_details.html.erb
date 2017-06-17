@@ -1,0 +1,19 @@
+<span id="average_rating"></span>
+<h3><%= food.name %></h3>
+<div class="">
+  <div class="">
+    <%= link_to food do %>
+        <%= image_tag food.image_url, class: 'background-blur' %>
+    <% end %>
+  </div>
+  <div class="">
+    <p>
+      <%= food.description %>
+    </p>
+  </div>
+  <div class="">
+    <%= food.price %>
+    <%= link_to 'add to orders', orders_add_path(id: food.id),
+                remote: true, method: :post, class: 'right', style: 'margin-right: 0' %>
+  </div>
+</div>

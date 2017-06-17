@@ -1,29 +1,11 @@
 <div class="row">
-  <div class="col m7">
-    <h3><%= @food.name %></h3>
-    <span id="average_rating"></span><%= @food.average_rating %>
-    <div class="card">
-      <div class="card-image">
-        <%= link_to @food do %>
-            <%= image_tag @food.image_url%>
-        <% end %>
-      </div>
-      <div class="card-content">
-        <p>
-          <%= @food.description %>
-        </p>
-      </div>
-      <div class="card-action">
-        <%= @food.price %>
-        <a href="#" class="right" style="margin-right: 0">Add to orders</a>
-      </div>
-    </div>
+  <div class="">
+   <%= render 'details', food: @food %>
   </div>
-
   <!-- Reviews -->
   <div class="col m4 offset-m1">
     <h3>Rating</h3>
-    <%= render 'ratings/form' %>
+    <%= render 'ratings/form', food: @food %>
   </div>
 </div>
 
