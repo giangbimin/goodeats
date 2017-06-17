@@ -1,0 +1,11 @@
+<% foods.each do |food| %>
+    <%= link_to menu_display_path(id: food.id), remote: true, class: 'item' do %>
+        <div>
+            <img src="<%= food.image_url %>">
+        </div>
+        <div >
+            <h4><%= food.name %> - <%= food.cuisine %> (<%= pluralize(food.views_count, 'view') %>)</h4>
+            <p><span><%= food.section %> | <%= food.price %></span></p>
+        </div>
+  <% end %>
+<% end %> 

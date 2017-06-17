@@ -1,0 +1,15 @@
+<%= form_tag menu_sort_path, remote: true, format: :js, id: 'sort-form' do |f| %>
+  <%= select("search", "name_sort", @name_sort, {:prompt => 'name sort' }) %>
+  <%= select("search", "price_sort", @price_sort, {:prompt => 'price sort'} ) %>
+  <%= select("search", "views_count_sort", @views_count_sort, { :prompt => 'views sort'}) %>
+  <%= select("search", "by_section", @by_section, { :prompt => 'section filter' }) %>
+  <%= select("search", "by_cuisine", @by_cuisine, { :prompt => 'cuisine filter' }) %>
+  <%= submit_tag 'search' %>
+<% end %>
+
+<div class="" id="food-list">
+  <%= render 'foods/list', foods: @foods %>
+</div>
+<div class="" id="display">
+  <%= render @food %>
+</div>
