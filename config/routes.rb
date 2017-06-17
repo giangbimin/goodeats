@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   get '/menu/display' => 'menu#display'
   post 'menu/sort'
   get 'pages/index'
-  get 'pages/contact'
+  get '/contact-us' => 'pages#contact'
+  root to: 'pages#index'
 end

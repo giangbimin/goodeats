@@ -1,11 +1,15 @@
 <% foods.each do |food| %>
-    <%= link_to menu_display_path(id: food.id), remote: true, class: 'item' do %>
-        <div>
-            <img src="<%= food.image_url %>">
-        </div>
-        <div >
-            <h4><%= food.name %> - <%= food.cuisine %> (<%= pluralize(food.views_count, 'view') %>)</h4>
-            <p><span><%= food.section %> | <%= food.price %></span></p>
-        </div>
-  <% end %>
+    <%= link_to menu_display_path(id: food.id), remote: true, class: 'menu-box' do %>
+      <div class="row clearfix margin-b-20">
+      <div class="thumb">
+          <img src="<%= food.image_url %>" width="70" class="img-fluid" alt="">
+      </div>
+      <div class="menu-content">
+        <h4><%= food.name %> (<%= pluralize(food.views_count, 'view') %>)</h4>
+        <p><span><%= food.section %> | <%= food.cuisine %> | <%= food.price %></span></p>
+        <p><%= food.description.truncate(58) %> ...</p>
+      </div>
+  </div>
+    <% end %>
+  <hr> 
 <% end %> 

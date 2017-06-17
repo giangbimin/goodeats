@@ -1,15 +1,31 @@
-<%= form_tag menu_sort_path, remote: true, format: :js, id: 'sort-form' do |f| %>
-  <%= select("search", "name_sort", @name_sort, {:prompt => 'name sort' }) %>
-  <%= select("search", "price_sort", @price_sort, {:prompt => 'price sort'} ) %>
-  <%= select("search", "views_count_sort", @views_count_sort, { :prompt => 'views sort'}) %>
-  <%= select("search", "by_section", @by_section, { :prompt => 'section filter' }) %>
-  <%= select("search", "by_cuisine", @by_cuisine, { :prompt => 'cuisine filter' }) %>
-  <%= submit_tag 'search' %>
-<% end %>
-
-<div class="" id="food-list">
-  <%= render 'foods/list', foods: @foods %>
-</div>
-<div class="" id="display">
-  <%= render @food %>
-</div>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 col-md-12 text-center">
+          <h1>Menu</h1>
+          <p class="animated fadeInLeft">Proin at cursus mi. Donec euismod lectus vel lacus luctus sollicitudin. Duis pulvinar magna nunc, eget lobortis eros auctor id.</p>
+        </div>
+      </div>
+      <div class="row text-center">
+        <%= form_tag menu_sort_path, remote: true, format: :js, id: 'sort-form', class: 'form-inline'  do |f| %>
+          <%= select("search", "by_section", @by_section, { :prompt => 'section filter' }, class: "form-control") %>
+          <%= select("search", "by_cuisine", @by_cuisine, { :prompt => 'cuisine filter' }, class: "form-control") %>
+          <%= select("search", "name_sort", @name_sort, {:prompt => 'name sort' }, class: "form-control") %>
+          <%= select("search", "price_sort", @price_sort, {:prompt => 'price sort'}, class: "form-control") %>
+          <%= select("search", "views_count_sort", @views_count_sort, { :prompt => 'views sort'}, class: "form-control") %>
+          <%= submit_tag 'search', type: "submit", class: "btn btn-primary" %>
+        <% end %>
+        <hr> 
+        <div class="col-sm-6 col-xs-12">
+          <div class="" id="food-list">
+            <%= render 'foods/list', foods: @foods %>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <div class="" id="display">
+            <%= render @food %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

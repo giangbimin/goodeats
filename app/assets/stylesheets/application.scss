@@ -1,0 +1,32 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "animate";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "swiper.min";
+
+.menu-box .thumb {
+    float: left;
+    margin-right: 20px;
+}
+.margin-b-20 {
+    margin-bottom: 20px;
+}
+.menu-box .menu-content {
+    overflow: hidden;
+}
+.menu-box .menu-content h4 {
+    margin-bottom: 5px;
+    font-family: "Poppins", sans-serif;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+.menu-box .menu-content h4 span {
+    float: right;
+    display: block;
+    font-family: "Lato", sans-serif;
+}
