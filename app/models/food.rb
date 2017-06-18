@@ -2,7 +2,8 @@ class Food < ApplicationRecord
   validates :name, :description, :image_url, :price, :section, :cuisine, :views_count, presence: true
   validates :price, numericality: true
 
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
+  has_many :food_orders, dependent: :destroy
 
   scope :by_section, -> (section) { where section: section }
   scope :by_cuisine, -> (cuisine) { where cuisine: cuisine }

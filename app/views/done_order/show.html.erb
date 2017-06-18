@@ -1,0 +1,66 @@
+
+<h3>Thank you for your order</h3>
+<h5>Your order created at: <%= @order.create_time %></h5>
+<div class="row">
+  <div class="col m7">
+  <table class="bordered centered striped" style="margin-bottom: 32px">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <!-- Foods -->
+    <% @foods.each do |food| %>
+        <tr id="row-<%= food.id %>">
+          <td><%= food.name %></td>
+          <td><%= food.quantity %></td>
+          <td><%= food.price %></td>
+          <td><%= food.total %></td>
+        </tr>
+    <% end %>
+
+    <!-- Coupon -->
+    <% if @coupon %>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= @coupon.value %></td>
+    <% end %>
+
+    <!-- Total -->
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= @order.total_money %></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+  <div class="col m4 offset-m1">
+  <div class="card" style="margin-bottom: 24px">
+    <div class="card-content">
+      <h5>Personal info</h5>
+      Username: <%= @order.username %> <br>
+      Phone: <%= @order.phone %> <br>
+      Address: <%= @order.address %> <br>
+      Email: <%= @order.email %> <br>
+    </div>
+    <div class="card-action">
+      <%= link_to 'home page', root_path %>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    toastr.info("We have send you an email");
+  });
+</script>

@@ -52,7 +52,7 @@
       <td></td>
       <td>
         <div class="input-field" id="coupon-value" >
-          <input id="coupon" type="text" class="validate" name="coupon">
+          <input id="coupon" type="text" class="validate">
         </div>
       </td>
       <td>
@@ -67,6 +67,7 @@
       <td></td>
       <td id="total"><%= format_price(@total) %></td>
       <td>
+        <input type='hidden' id="total_money" name='order[total_money]' value='<%= @total %>' />
         <button id="checkout" class="btn waves-effect waves-light" type="submit" name="action">
           Check out
         </button>
@@ -88,8 +89,7 @@
         if (data.success) {
           toastr.info('Coupon added');
           percent = Math.round(data.percent);
-          $('#btn-coupon').remove();
-          $('#coupon-value').replaceWith("-" + percent + "%");
+          updateCoupon(data.id);
           $('#total').text(calculateTotal().format() + " VND")
         } else {
           toastr.error('Invalid coupon');
@@ -97,6 +97,15 @@
       }
     })
   });
+  updateCoupon = function (couponId) {
+    $('#btn-coupon').remove();
+    $('#coupon-value').replaceWith("-" + percent + "%");
+    $('<input>').attr({
+      type: 'hidden',
+      name: 'coupon_id',
+      value: couponId
+    }).appendTo('form');
+  };
   // Number formatter
   Number.prototype.format = function (n, x) {
     var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
@@ -115,6 +124,7 @@
     );
     // Update all total
     $('#total').text(calculateTotal().format() + " VND")
+    $('#total_money').val(calculateTotal());
   });
   <% end %>
   // Calculate total amount

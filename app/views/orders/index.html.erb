@@ -1,7 +1,7 @@
 <div id="my-order">
   <h3><%= @title %></h3>
   <% if @total > 0 %>
-      <%= form_tag orders_create_path, method: :post do %>
+      <%= form_tag orders_create_path, id: 'order-form', method: :post, remote: true do %>
           <div class="row">
             <%= render 'orders/content' %>
             <%= render 'orders/personal_info' %>

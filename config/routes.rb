@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'done_order/show'
+
   get '/menu' => 'menu#index'
   get '/menu/display' => 'menu#display'
   post 'menu/sort'
@@ -9,9 +11,11 @@ Rails.application.routes.draw do
   resources :food do
     resources :ratings, only: [:create]
   end
-  post 'orders/add'
   get 'orders/index'
-  post 'orders/create'
+  post 'orders/add'
   post 'orders/coupon'
   post 'orders/remove'
+  post 'orders/create'
+  get 'orders/success'
+  get 'done_order/show'
 end

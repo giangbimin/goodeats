@@ -15,6 +15,10 @@ module CookiesHelper
     cookies[:orders] = encode_orders(new_orders)
   end
 
+  def clear_orders
+    cookies[:orders] = nil
+  end
+
   private
 
   def decode_orders
