@@ -16,10 +16,10 @@ end
 Food.all.each do |food|
   2.times do
     food.ratings.create(
-        username: FFaker::Name.name,
-        comment: FFaker::Lorem.paragraph(1),
+        username: Faker::Name.name,
+        comment: Faker::Lorem.paragraph(1),
         score: rand(5) + 1
     )
   end
 end
-Coupon.create(name: 'CODERSCHOOL', percent: 50)
+Coupon.create(code: 'CODERSCHOOL', percent: 50)

@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 20170618041333) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "coupon_orders", force: :cascade do |t|
-    t.integer "coupon_id"
-    t.integer "order_id"
+    t.bigint "coupon_id"
+    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["coupon_id"], name: "index_coupon_orders_on_coupon_id"
@@ -29,8 +32,8 @@ ActiveRecord::Schema.define(version: 20170618041333) do
   end
 
   create_table "food_orders", force: :cascade do |t|
-    t.integer "food_id"
-    t.integer "order_id"
+    t.bigint "food_id"
+    t.bigint "order_id"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170618041333) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.integer "food_id"
+    t.bigint "food_id"
     t.integer "score", default: 0
     t.string "comment"
     t.string "username"
@@ -70,4 +73,9 @@ ActiveRecord::Schema.define(version: 20170618041333) do
     t.index ["food_id"], name: "index_ratings_on_food_id"
   end
 
+  add_foreign_key "coupon_orders", "coupons"
+  add_foreign_key "coupon_orders", "orders"
+  add_foreign_key "food_orders", "foods"
+  add_foreign_key "food_orders", "orders"
+  add_foreign_key "ratings", "foods"
 end
