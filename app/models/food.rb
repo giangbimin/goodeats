@@ -10,7 +10,7 @@ class Food < ApplicationRecord
   scope :price_sort, -> (opition) { order(price: opition) }
   scope :name_sort, -> (opition) { order(name: opition) }
   scope :views_count_sort, -> (opition) { order(views_count: opition) }
-
+  scope :search_name, -> (search) { where('name LIKE ?', "%#{search}%") }
   def increase_views_count
     self.views_count += 1
     self.save

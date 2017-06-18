@@ -22,7 +22,7 @@ class MenuController < ApplicationController
   private
 
   def filtering_params(params)
-    params.slice(:by_section, :by_cuisine, :name_sort, :price_sort, :views_count_sort)
+    params.slice(:search_name, :by_section, :by_cuisine, :name_sort, :price_sort, :views_count_sort)
   end
 
   def default_opitions

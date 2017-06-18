@@ -8,6 +8,7 @@
       </div>
       <div class="row text-center">
         <%= form_tag menu_sort_path, remote: true, format: :js, id: 'sort-form', class: 'form-inline'  do |f| %>
+          <%= text_field_tag 'search[search_name]', nil, class: "form-control" %>
           <%= select("search", "by_section", @by_section, { :prompt => 'section filter' }, class: "form-control") %>
           <%= select("search", "by_cuisine", @by_cuisine, { :prompt => 'cuisine filter' }, class: "form-control") %>
           <%= select("search", "name_sort", @name_sort, {:prompt => 'name sort' }, class: "form-control") %>
