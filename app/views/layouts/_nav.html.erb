@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="active">
                   <%= link_to orders_index_path, method: :get, id: 'orders_count' do %>
-                     <span class= "glyphicon glyphicon-shopping-cart"></span> (<%= @orders_count %>)
+                     <span class= "glyphicon glyphicon-shopping-cart"></span> <span id='orders_count'>(<%= @orders_count %>)</span>
                   <% end %>
               </li>
               <li><a href="/Feed-back">Feed back</a></li>

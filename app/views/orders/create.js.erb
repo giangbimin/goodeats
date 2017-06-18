@@ -1,5 +1,5 @@
 <% if @order.persisted? %>
-  location.href = '<%= thank_you_show_path(id: @order.id) %>';
+  location.href = '<%= done_order_show_path(id: @order.id) %>';
 <% else %>
   $("#order-error").html("<%= escape_javascript(render 'shares/error', object: @order) %>");
 <% end %> 

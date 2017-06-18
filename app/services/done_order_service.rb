@@ -27,7 +27,7 @@ class DoneOrderService
 
   def map_to_food(food_order)
     food = food_order.food
-    food.set_quantity(food_order.quantity)
+    @quantity = food_order.quantity
     food
   end
 end

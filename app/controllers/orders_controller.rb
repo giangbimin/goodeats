@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:coupon]
+
   def add
     add_to_orders(params[:id])
     respond_to :js
@@ -12,7 +14,7 @@ class OrdersController < ApplicationController
   def coupon
     coupon = Coupon.where(code: params[:code]).first
     percent = coupon ? coupon.percent : 0
-    render json: {success: coupon != nil, percent: percent}
+    render json: { success: coupon != nil, percent: percent }
   end
 
   def create
@@ -42,12 +44,12 @@ class OrdersController < ApplicationController
   end
 
   def create_food_orders
-    @params[:id].zip(@params[:quantity]).each do |id, quantity|
+    params[:id].zip(params[:quantity]).each do |id, quantity|
       @order.food_orders.create(food_id: id, quantity: quantity)
     end
   end
 
   def create_coupon_orders
-    @order.coupon_orders.create(coupon_id: @params[:coupon_id]) if @params[:coupon_id]
+    @order.coupon_orders.create(coupon_id: params[:coupon_id]) if params[:coupon_id]
   end
 end

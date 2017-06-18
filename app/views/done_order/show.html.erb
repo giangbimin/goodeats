@@ -1,6 +1,6 @@
 
 <h3>Thank you for your order</h3>
-<h5>Your order created at: <%= @order.create_time %></h5>
+<h5>Your order created at: <%= @order.created_at %></h5>
 <div class="row">
   <div class="col m7">
   <table class="bordered centered striped" style="margin-bottom: 32px">
@@ -19,9 +19,9 @@
     <% @foods.each do |food| %>
         <tr id="row-<%= food.id %>">
           <td><%= food.name %></td>
-          <td><%= food.quantity %></td>
+          <td></td>
           <td><%= food.price %></td>
-          <td><%= food.total %></td>
+          <td></td>
         </tr>
     <% end %>
 

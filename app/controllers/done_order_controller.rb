@@ -1,6 +1,8 @@
 class DoneOrderController < ApplicationController
   def show
     service = DoneOrderService.new(params[:id])
-    @order, @foods, @coupon = service.order, service.foods, service.coupon
+    @order = service.order
+    @foods = service.foods
+    @coupon = service.coupon
 end
 end
