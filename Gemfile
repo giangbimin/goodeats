@@ -6,8 +6,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.1.1'
-# gem 'pg', '~> 0.18'
-gem 'sqlite3'
+gem 'pg', '~> 0.18'
+# gem 'sqlite3'
 gem 'puma', '~> 3.7'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'sass-rails', '~> 5.0'
@@ -26,6 +26,11 @@ gem 'draper'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'jquery-raty-rails', github: 'bmc/jquery-raty-rails'
+
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
