@@ -1,5 +1,18 @@
-  <h4>Leave a rating:</h4>
-  <%= form_for [food, food.ratings.build], remote: true do |f| %>
-      <%= f.text_area :score, class: "form-control"%>
+  <h4>Leave a review:</h4>
+  <%= form_for [food, food.ratings.build], remote: true, class: "form-group" do |f| %>
+     <div class="form-group">
+      <%=  f.label :username, "username" %>
+      <%= f.text_field :username, id: "username", class: "form-control"%>
+    </div>
+     <div class="form-group">
+      <%=  f.label :comment, "comment" %>
+      <%= f.text_area :comment, id: "comment", class: "form-control"%>
+    </div>
+     <div class="form-group">
+      <%=  f.label :score, "score" %>
+      <%= f.text_field :score, id: "score", class: "form-control"%>
+    </div>
+    <div class="form-group">
       <%= f.button :submit, class: "btn btn-primary" %>
+    </div>
   <% end %>

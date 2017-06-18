@@ -1,13 +1,24 @@
 <%= image_tag food.image_url, alt: food.name.to_s , class: 'img-responsive' %>
-  <span id="average_rating"></span><%= @food.average_rating %>
-  <h4><%= food.name %> <span><%= format_price(food.price) %></span></h4>
-  <p><%= food.description %></p>
-  <p><%= food.section %></p>
+  <span id="average_rating"></span> <br><br>
+  <%= link_to 'add to orders', orders_add_path(id: food.id), remote: true, method: :post, class: "btn btn-primary" %>
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <h4><%= food.name %> </h4>
+      <span> Price: <%= format_price(food.price) %></span>
+    </div>
+    <div class="col-md-6 text-left">
+      <h4><%= food.section %> | <%= food.cuisine %></h4>
+      <p><%= food.description %></p>
+    </div>
+  </div>
+  
   <!-- Reviews -->
   <div class="ajax-form-create">
     <%= render "ratings/form", food: food %>
   </div>
-  <%= link_to 'add to orders', orders_add_path(id: food.id), remote: true, method: :post %>
+  <div id="reviews">
+    <%= render "ratings/index", food: food %>
+  </div>
   <script>
   $('#average_rating').raty({
     path: '/assets',

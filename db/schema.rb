@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20170618041333) do
     t.string "image_url"
     t.string "section"
     t.string "cuisine"
-    t.integer "views_count"
+    t.integer "views_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20170618041333) do
   create_table "ratings", force: :cascade do |t|
     t.integer "food_id"
     t.integer "score", default: 0
+    t.string "comment"
+    t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["food_id"], name: "index_ratings_on_food_id"

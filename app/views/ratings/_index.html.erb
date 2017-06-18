@@ -1,0 +1,17 @@
+<% food.ratings.order(created_at: :DESC).each do |rating| %>
+<div class="row text-left">
+    <div class="">
+        <h4>name: <%= rating.username %></h4>
+        score <div id="score<%= rating.id %>"></div>
+    </div>
+    comment: <%= rating.comment %>
+</div>
+<hr>
+    <script>
+      $('#score<%= rating.id %>').raty({
+        path: '/assets',
+        readOnly: true,
+        score: <%= rating.score %>
+      });
+    </script>
+<% end %>

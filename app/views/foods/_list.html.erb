@@ -5,8 +5,9 @@
           <img src="<%= food.image_url %>" width="70" class="img-fluid" alt="">
       </div>
       <div class="menu-content">
-        <h4><%= food.name %> (<%= pluralize(food.views_count, 'view') %>)</h4>
-        <p><span><%= food.section %> | <%= food.cuisine %> | <%= food.price %></span></p>
+        <h4><%= food.name %> | price: <%= food.price %></h4>
+        <span class="glyphicon glyphicon-eye-open"></span> <%= food.views_count %> | <span class="glyphicon glyphicon-comment"></span> <%= food.ratings.count %> | <span><%= food.section %> | <%= food.cuisine %></span>
+        <%= food.price %>
         <p><%= food.description.truncate(58) %> ...</p>
       </div>
   </div>

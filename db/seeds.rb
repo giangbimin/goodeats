@@ -16,8 +16,8 @@ end
 Food.all.each do |food|
   2.times do
     food.ratings.create(
-        # username: FFaker::Name.name,
-        # comment: FFaker::Lorem.paragraph(1),
+        username: FFaker::Name.name,
+        comment: FFaker::Lorem.paragraph(1),
         score: rand(5) + 1
     )
   end
