@@ -4,9 +4,9 @@
 
 Submitted by: **gianghoang.dev@gmail.com*
 
-Time spent: **19** hours spent in total
+Time spent: **18** hours spent in total
 
-URL: **heroku-app-url**
+URL: **https://goodres.herokuapp.com/menu**
 
 ## User Stories
 
@@ -57,10 +57,8 @@ The following **known issues**:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-
-![Video Walkthrough](path-to-your-GIF-file)
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+http://i.imgur.com/zXVp0MP.gif
+![Video Walkthrough](http://i.imgur.com/zXVp0MP.gif)
 
 ## Notes
 
@@ -68,7 +66,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name]
+    Copyright [2017] [gianghoang.dev@gmail.com]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
