@@ -1,6 +1,6 @@
 class MenuController < ApplicationController
   def index
-    @foods = Food.all
+    @foods = Food.all.order(name: :asc)
     @food = @foods.first
     default_opitions
   end
